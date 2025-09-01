@@ -1,0 +1,58 @@
+# ✅ Default configuration (always loaded)
+spring:
+  profiles:
+    active: qa  # This activates the 'qa' profile
+  application:
+    name: demo.spring-boot-practice
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+welcome:
+  message: Welcome to the spring boot application!!!
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+
+# ✅ Development profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/dcbapp
+    username: root
+    password: suhas
+
+---
+
+# ✅ QA profile
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    username: root
+    password: suhas
+
+---
+
+# ✅ Production profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    username: root
+    password: suhas
